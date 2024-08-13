@@ -38,7 +38,7 @@ def segment_image_based_on_density(image_path, threshold=0.5, sigma=5, binary_th
     return density_map
 
 def process_and_save_images_in_folder(parent_folder, csv_filename='segmentation_results.csv'):
-    # CSV dosyası oluştur ve başlıkları yaz
+
     with open(csv_filename, mode='w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
         csv_writer.writerow(['name', 'number of segmentation', 'gap ratio', 'overlap ratio'])
@@ -48,16 +48,14 @@ def process_and_save_images_in_folder(parent_folder, csv_filename='segmentation_
             if os.path.isdir(folder_path):
                 for image_name in os.listdir(folder_path):
                     image_path = os.path.join(folder_path, image_name)
-                    if image_path.endswith('.png'):  # İşlenecek dosya türünü belirt
+                    if image_path.endswith('.png'):  
                         labeled_array, num_segments = segment_image(image_path, binary_threshold=200)
                         density_map = segment_image_based_on_density(image_path, threshold=0.5, sigma=5, binary_threshold=200)
 
                         gap_ratio, overlap_ratio = calculate_gap_and_overlap_ratios(labeled_array, density_map, threshold=0.5)
 
-                        # Verileri CSV'ye yaz
                         csv_writer.writerow([folder_name, num_segments, f"{gap_ratio:.2f}", f"{overlap_ratio:.2f}"])
 
-                        # Görselleştirme ve kaydetme
                         plt.figure()
                         plt.imshow(labeled_array, cmap='nipy_spectral')
                         plt.title(f'Segmented Image: {image_name}')
@@ -74,5 +72,7 @@ def process_and_save_images_in_folder(parent_folder, csv_filename='segmentation_
                         plt.savefig(density_filename)
                         plt.close()
 
-output_folder = r'C:\Users\ranag\Downloads\Görüntüler-20240813T122831Z-001\Görüntüler'  # Çıktıların bulunduğu ana dizin
-process_and_save_images_in_folder(output_folder, csv_filename='segmentation_results.csv')
+if __name__ == "__main__":
+
+    output_folder = r'C:\Users\ranag\Downloads\Görüntüler-20240813T122831Z-001\Görüntüler'  
+    process_and_save_images_in_folder(output_folder, csv_filename='segmentation_results.csv')

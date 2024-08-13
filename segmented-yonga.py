@@ -42,6 +42,6 @@ def segment_image_based_on_density(image_path, threshold=0.5, sigma=5):
     plt.axis('off')
     plt.show()
 
-image_path = '97047836_07_12_12_18_38_592.bmp'
+image_path = '.bmp'
 segment_image(image_path)
 segment_image_based_on_density(image_path)
