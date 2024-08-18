@@ -1,6 +1,5 @@
 # Image and Video Processing Tools
-
-This repository contains Python scripts for processing images and videos. The main functionalities include extracting frames from videos, segmenting images based on connected components and density, and compiling results into a CSV file with additional data from text files.
+This repository contains Python scripts for processing images and videos. The main functionalities include extracting frames from videos, segmenting images based on connected components and density, and compiling results into a CSV file with additional data from text files. The project was developed to collect and analyze real data from a newly produced machine, where image processing methods are used to determine key machine parameters. By experimenting with different parameter combinations, a large amount of data is gathered, which is then evaluated and made meaningful through these scripts.
 
 ## Overview
 
